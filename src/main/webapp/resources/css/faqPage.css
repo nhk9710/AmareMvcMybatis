@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+	/* 전체 적인 설정 */
+		*{
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+		}
+	/* h1태그 설정 */
+		h1{
+		
+			background-color: #DDBC6F;
+			
+			position: static;
+			color: black;
+			padding: 28px;
+			 
+			 width: 100%;
+			 z-index: 1;
+		}
+
+	/* h2 글씨 설정 */
+	h2 {
+	font-size: 25px; padding: 20px;
+	}
+	/* h4태그 설정 */
+	h4{
+			text-align: center;
+	}
+	/* html태그 설정 */
+	html {
+			height: 100%;
+		}
+	
+	/* 사이드바 메뉴 설정 */
+ 	 #faqul {
+		list-style-type: none;
+		background-color: #F3DDA8;
+		width: 18%;
+		top: 15%;
+		padding: 0;
+		border: solid 1px #BB8A15;
+		margin: 0;
+		position: fixed;
+		height: 100%;
+		overflow: auto;
+		z-index: 1;
+	}
+	/* id속성 선택  */
+	 #faqli1 {
+		border-bottom: solid 1px white; 
+	}
+	
+	 #faqli1 a{
+		text-decoration: none;
+		display: block;
+		color: #BB8A15;
+		padding: 8px 15px 8px 15px;
+		font-weight: bold;
+	}
+	
+	 #faqli1 a:hover{
+		background-color: #BB8A15;
+		color: #fff;
+	}
+	
+	/* --버튼 클래스 배경색 지정 */
+	.btn {
+	border-radius: 100px;
+		background-color: #F3DDA8;
+		color: white;
+	}
+	/* 답변내용 속성지정 */
+	.card-body {
+		background-color: white;
+		color: black;
+		border: solid 1px #F3DDA8;
+		border-radius: 100px;
+		
+	}
+
+	/* 자주묻는 질문 collapse 위치 설정 */
+	.cont {
+		position: absolute;
+		left: 25%;
+		top: 20%;
+	}
+
+	/* --버튼 위에 마우스 포인트 있을때 색 변경 */
+	button:hover:not(.active){
+		background-color: #DDBC6F;
+		color: white;
+	}
+	/* --전체 배경색  */
+	body {
+			margin: 0;
+			height: 100%;
+			background-color: white; 
+	}
+	/* 헤더 클래스 설정 */
+		.header {
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: 2;
+			
+		}
+		/* wrap클래스 설정 */
+		.wrap {
+		min-height: 100%;
+		position: relative;
+		padding-bottom:19px;
+		}
+		/* 푸터 클래스 설정 */
+		.footer {
+			height: 100px;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			text-align: center;
+		}
