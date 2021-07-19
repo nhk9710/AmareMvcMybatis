@@ -31,7 +31,7 @@
 		<constructor-arg index="0" ref="sqlSessionFactoryBean"></constructor-arg>
 	</bean>
 	
-	<bean id="boardDAO" class="kr.or.project.dao.BoardDAOImpl">
+	<!-- <bean id="boardDAO" class="kr.or.project.dao.BoardDAOImpl">
 		<property name="sqlSession" ref="sqlSession"></property>
-	</bean>
+	</bean> -->
 </beans>

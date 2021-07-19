@@ -12,6 +12,7 @@
 	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" >
 	<link href="${pageContext.request.contextPath}/resources/css/kfonts2.css" rel="stylesheet" >
 	<title>문의 사항</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<style type="text/css">
 		table{
 		    width: 100%;
@@ -34,7 +35,7 @@
 	</style>
 </head>
 <body>
-<jsp:include page="../main/menu.jsp" />
+
 	
 	<div id="container" style="margin-bottom: 20px; margin-top: 20p;">
 	<div  class="jumbotron"><h2>문의사항</h2></div>
@@ -66,6 +67,6 @@
 	</table>
 
 </div>
-		<jsp:include page="../main/footer.jsp" />
+
 </body>
 </html>

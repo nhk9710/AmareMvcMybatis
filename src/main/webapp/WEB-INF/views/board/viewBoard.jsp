@@ -52,7 +52,7 @@
 		obj.submit();
 	}
 	function removeList(obj) {
-		obj.action = "${contextPath}/board/removeBoard.do?qa_No=${frmBoard.qa_No}"
+		obj.action = "${contextPath}/board/removeBoard.do?qa_No=${vo.qa_No}"
 		obj.submit();
 	}
 	

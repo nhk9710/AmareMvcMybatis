@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <% request.setCharacterEncoding("utf-8"); %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!-- jquery연결시 필요한 태그 -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

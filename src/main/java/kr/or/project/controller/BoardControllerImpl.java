@@ -7,7 +7,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +23,9 @@ import kr.or.project.service.BoardService;
 import kr.or.project.vo.BoardVO;
 
 @Controller("boardController")
+@EnableAspectJAutoProxy
 public class BoardControllerImpl extends MultiActionController implements BoardController {
-	
+	private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl.class);
 	@Autowired
 	private BoardService boardService;
 	@Autowired
@@ -29,9 +33,12 @@ public class BoardControllerImpl extends MultiActionController implements BoardC
 	
 
 	@Override
-	@RequestMapping(value = "board/listBoards.do", method = {RequestMethod.GET, RequestMethod.POST} )
+	@RequestMapping(value = "board/listBoards.do", method = RequestMethod.GET )
 	public ModelAndView listBoards(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
+		logger.info("viewName :" + viewName);
+		
+		
 		List boardsList = boardService.listBoards();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("boardsList", boardsList);
@@ -66,15 +73,17 @@ public class BoardControllerImpl extends MultiActionController implements BoardC
 				end = uri.length();
 			}
 			String fileName = uri.substring(begin, end);
+			logger.info("1.fileName :" + fileName);
 			
 			if (fileName.indexOf(".") != -1) {				// view fileName(즉 jsp)에서 확장자를 제외함
 				fileName = fileName.substring(0, fileName.lastIndexOf("."));
+				
 			}
 			
 			if(fileName.indexOf("/") != -1) {				// view fileName에서 앞에 폴더 있다면 제외함.
-				fileName = fileName.substring(fileName.lastIndexOf("/"), fileName.length());
+				fileName = fileName.substring(fileName.lastIndexOf("/",1), fileName.length());
 			}
-			
+			logger.info("2.fileName :" + fileName);
 			return fileName;
 	}
 	
