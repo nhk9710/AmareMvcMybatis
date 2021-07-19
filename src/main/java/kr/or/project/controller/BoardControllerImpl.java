@@ -33,7 +33,7 @@ public class BoardControllerImpl extends MultiActionController implements BoardC
 	
 
 	@Override
-	@RequestMapping(value = "board/listBoards.do", method = RequestMethod.GET )
+	@RequestMapping(value = "/board/listBoards.do", method = RequestMethod.GET )
 	public ModelAndView listBoards(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = getViewName(request);
 		logger.info("viewName :" + viewName);
@@ -55,11 +55,11 @@ public class BoardControllerImpl extends MultiActionController implements BoardC
 		
 		if (uri == null || uri.trim().equals("")) {
 			uri = request.getRequestURI();
-			System.out.println("uri : " + uri);
+			System.out.println("uri2 : " + uri);
 		}
 		
 		int begin = 0;
-		if( (contextPath == null || ("".equals(contextPath)))) {
+		if( !((contextPath == null) || ("".equals(contextPath)))) {
 			begin = contextPath.length();
 			System.out.println("begin : " + begin);
 		}
