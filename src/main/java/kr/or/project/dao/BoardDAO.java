@@ -1,13 +1,14 @@
 package kr.or.project.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
 import kr.or.project.vo.BoardVO;
 
 public interface BoardDAO {
-	public List selectAllBoardList() throws DataAccessException;
+	public List<BoardVO> selectAllBoardList(Map<String, Integer> pagingMap) throws DataAccessException;
 
 	public int deleteBoard(int qa_No) throws DataAccessException;
 
@@ -15,6 +16,8 @@ public interface BoardDAO {
 
 	public BoardVO viewBoard(int qa_No) throws DataAccessException;
 
-	public void updateBoard(BoardVO boardVO) throws DataAccessException ;
+	public void updateBoard(Map updateMap) throws DataAccessException ;
+
+	public int selectTotBoards() throws DataAccessException;
 
 }

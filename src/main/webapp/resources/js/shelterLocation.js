@@ -48,4 +48,15 @@ $('document').ready(function() {
  });
 
 
+jQuery('#sido1').change(function() {
+	var state = jQuery('#sido1 option:selected').val();
+	if ( state == 'option' ) {
+		jQuery('.result').show();
+	} else {
+		jQuery('.result').hide();
+	}
 });
+});
+
+
+

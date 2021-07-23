@@ -4,8 +4,9 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("boardVO")
 public class BoardVO {
+	private int level;
 	private int qa_No;
 	private int qa_parentNo;
 	private String qa_title;
@@ -17,8 +18,9 @@ public class BoardVO {
 	public BoardVO() {
 	}
 
-	public BoardVO(int qa_No, String qa_title, String qa_category, String qa_content, Date qa_date, String user_id) {
+	public BoardVO(int level ,int qa_No, String qa_title, String qa_category, String qa_content, Date qa_date, String user_id) {
 		super();
+		this.level = level;
 		this.qa_No = qa_No;
 		this.qa_title = qa_title;
 		this.qa_category = qa_category;
@@ -27,6 +29,14 @@ public class BoardVO {
 		this.user_id = user_id;
 	}
 
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	
 	public String getQa_category() {
 		return qa_category;
 	}

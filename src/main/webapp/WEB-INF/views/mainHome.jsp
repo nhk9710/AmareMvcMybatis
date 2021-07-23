@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" >
 	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>

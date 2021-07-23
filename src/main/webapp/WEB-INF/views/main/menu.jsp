@@ -31,6 +31,7 @@
 		  });
 
 </script>
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" >
 <style>
 * {margin: 0; padding: 0; }
 li {list-style: none; }

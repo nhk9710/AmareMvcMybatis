@@ -18,7 +18,7 @@
 			display: none;
 		}
 		table{
-		    width: 100%;
+		    width: 70%;
 		    border-collapse: collapse;
 		    line-height: 24px;
 		}
@@ -40,11 +40,8 @@
 		
 	
 	function fn_enable(obj) {
-		document.getElementById("qa_title_mod").disabled=false;
-		document.getElementById("qa_category_mod").disabled=false;
-		document.getElementById("qa_content_mod").disabled=false;
-		document.getElementById("tr_btn_mod").style.display="block"
-		document.getElementById("tr_btn").style.display="none";
+		obj.action = "${contextPath}/board/updateForm.do"
+		obj.submit();
 	}
 	
 	function backToList(obj) {
@@ -56,10 +53,6 @@
 		obj.submit();
 	}
 	
-	function fn_modify_Board(obj) {
-		obj.action = "${contextPath}/board/updateBoard.do"
-		obj.submit();
-	}
 	
 	function fn_reply_form(url, qa_No) {
 		var form = document.createElement("form");
@@ -78,7 +71,6 @@
 </script>
 </head>
 <body>
-<jsp:include page="../main/menu.jsp" />
 <form action="${contextPath}" name="frmBoard" method="post" enctype="multipart/form-data">
 	<h1 align="center">게시판 상세정보 출력</h1>
 	<table border="1" align="center" width="80%" >
@@ -121,15 +113,7 @@
 					<input type="button" value="답급달기" onclick="fn_reply_form('${contextPath}/board/replyForm.do', ${board.qa_No})" />   <!-- 요청명과 글번호를 전달함  -->
 				</td>
 			</tr>
-			
-			<tr id="tr_btn_mod">
-				<td colspan="2" align="center">
-					<input type="button" value="수정반영하기"  onclick="fn_modify_Board(frmBoard)" />
-					<input type="button" value="취소" onclick="backToList(frmBoard)">
-				</td>
-			</tr>
 	</table>
 	</form>
-		<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

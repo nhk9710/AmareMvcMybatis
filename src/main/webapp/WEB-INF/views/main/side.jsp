@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>사이드 메뉴</title>
+<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" >
 <style type="text/css">
 	.no-underline {
 		text-decoration: none;
@@ -18,11 +19,12 @@
 </style>
 </head>
 <body>
-	<h1>내 Store활동</h1>
-	<h1>
+	<h2 style="color:white;">Info</h2>
+	<br/><br/>
+	<h4>
 		<a href="${contextPath}/board/listBoards.do" class="no-underline">문의게시판</a><br/><br/>
-		<a href="${contextPath}/board/listArticles.do" class="no-underline">보호소 위치</a><br/><br/>
-		<a href="${contextPath}/board/" class="no-underline">QnA</a><br/><br/>
-	</h1>
+		<a href="${contextPath}/board/shelter_location.do" class="no-underline">보호소 위치</a><br/><br/>
+		<a href="${contextPath}/board/faqPage.do" class="no-underline">FAQ</a><br/><br/>
+	</h4>
 </body>
 </html>

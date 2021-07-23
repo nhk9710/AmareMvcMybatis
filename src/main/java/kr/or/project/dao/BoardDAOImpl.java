@@ -1,16 +1,22 @@
 package kr.or.project.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import kr.or.project.service.BoardServiceImpl;
 import kr.or.project.vo.BoardVO;
 
 @Repository("boardDAO")
 public class BoardDAOImpl implements BoardDAO {
+	private static final Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
+	
 	@Autowired
 	private SqlSession sqlSession;
 	
@@ -19,9 +25,15 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List selectAllBoardList() throws DataAccessException {
-		List<BoardVO> boardsList = sqlSession.selectList("mapper.board.selectAllBoardList");
+	public List<BoardVO> selectAllBoardList(Map<String, Integer> pagingMap) throws DataAccessException {
+		List<BoardVO> boardsList = sqlSession.selectList("mapper.board.selectAllBoardList", pagingMap);
 		return boardsList;
+	}
+	
+	@Override
+	public int selectTotBoards() throws DataAccessException {
+		int totBoards = sqlSession.selectOne("mapper.board.selectTotBoards");
+		return totBoards;
 	}
 
 	@Override
@@ -42,10 +54,12 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne("mapper.board.viewBoard", qa_No);
 		
 	}
-
-	public void updateBoard(BoardVO boardVO) throws DataAccessException {
+	@Override
+	public void updateBoard(Map updateMap) throws DataAccessException {
+		 sqlSession.update("mapper.board.updateBoard", updateMap);
 		
-		sqlSession.update("mapper.board.updateBoard", boardVO);
 	}
+
+	
 
 }

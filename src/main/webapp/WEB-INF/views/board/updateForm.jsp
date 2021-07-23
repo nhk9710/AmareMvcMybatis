@@ -4,15 +4,15 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
 	request.setCharacterEncoding("UTF-8");
-%>          
+%>      
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" >
-<link href="${pageContext.request.contextPath}/resources/css/kfonts2.css" rel="stylesheet" >
-<title>게시글 작성</title>
-<style type="text/css">
+	<meta charset="UTF-8">
+	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" >
+	<link href="${pageContext.request.contextPath}/resources/css/kfonts2.css" rel="stylesheet" >
+	<title>문의 수정하기</title>
+	<style type="text/css">
 		.text_center {
 			text-align: center;
 		}
@@ -34,14 +34,7 @@
 			padding : 10px;
 		}
 	</style>
-	<script type="text/javascript">
-	function backToList(obj) {
-		obj.action = "${contextPath}/board/listBoards.do"
-		obj.submit();
-	}
-	</script>
 </head>
-
 <body>
 	<form action="${contextPath}/board/addBoard.do" method="post">
 		<h1 class="text_center">새글작성 페이지</h1>
@@ -69,7 +62,7 @@
 			
 			<tr>
 				<td width="200"><p align="right">아이디</td>
-				<td width="400"><input type="text" name="user_id" /> </td>
+				<td width="400"><input type="text" name="user_id" readonly /> </td>
 			</tr>
 			<tr>
 				<td width="200"><p>&nbsp;</p></td>

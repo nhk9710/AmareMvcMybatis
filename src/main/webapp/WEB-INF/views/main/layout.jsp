@@ -8,16 +8,23 @@
 <head>
 	<meta charset="UTF-8">
 	<title><tiles:insertAttribute name="title" /></title>
+	<link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" >
 	<style type="text/css">
-		#container {
+		.body{
 			width: 100%;
+		}
+	
+		#wrapper {
+			width: 100%;
+			height:100%;
+			position: absolute;
 			margin: 0px auto;
 			text-align: center;
 			border: 0px solid #bcbcbc;
 		}
 		
 		#sidebar-left{
-			width: 15%;
+			width: 11%;
 			height: 700px;
 			padding: 5px;
 			margin-right: 5px;
@@ -37,7 +44,7 @@
 	</style>
 </head>
 <body>
-	<div id="container">
+	<div  id="wrapper">
 		<div id="header">
 			<tiles:insertAttribute name="header" />			<!-- tiles_member.xml의 <definition> 하위 태그의 <put-attribute>태그의 name이 header의 JSp를 표시함. -->
 		</div>
