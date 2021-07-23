@@ -60,6 +60,12 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 
+	@Override
+	public BoardVO selectArticle(int qa_No) throws DataAccessException {
+		
+		return sqlSession.selectOne("mapper.board.selectArticle", qa_No);
+	}
+
 	
 
 }

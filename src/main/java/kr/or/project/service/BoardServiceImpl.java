@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService{
 
 
 	@Override
-	public Map listBoards(Map<String, Integer> pagingMap) throws DataAccessException {
+	public Map listBoards(Map<String, Integer> pagingMap) throws Exception {
 		List<BoardVO> boardsList = boardDAO.selectAllBoardList(pagingMap);		/* 전달된 pagingMap을 사용해 글 목록을 조회함*/
 		int totBoards = boardDAO.selectTotBoards();								/* 테이블에 존재하는 글 수를 조회함 */
 		
@@ -43,23 +43,27 @@ public class BoardServiceImpl implements BoardService{
 
 
 	@Override
-	public int removeBoard(int qa_No) throws DataAccessException {
+	public int removeBoard(int qa_No) throws Exception {
 		
 		return boardDAO.deleteBoard(qa_No);
 	}
 
 
 	@Override
-	public int addBoard(BoardVO boardVO) throws DataAccessException {
+	public int addBoard(BoardVO boardVO) throws Exception {
 		
 		return boardDAO.insertBoard(boardVO);
 	}
 
 
 	@Override
-	public BoardVO viewBoard(int qa_No) throws DataAccessException {
+	public Map viewBoard(int qa_No) throws Exception {
+		Map articleMap = new HashMap();
+		BoardVO articleVO = boardDAO.selectArticle(qa_No);
 		
-		return boardDAO.viewBoard(qa_No);
+		articleMap.put("article", articleVO);
+		
+		return articleMap;
 		
 	
 		
@@ -67,7 +71,7 @@ public class BoardServiceImpl implements BoardService{
 
 
 	@Override
-	public Map updateBoard(Map updateMap) throws DataAccessException {
+	public Map updateBoard(Map updateMap) throws Exception {
 		
 		boardDAO.updateBoard(updateMap);
 		return updateMap;

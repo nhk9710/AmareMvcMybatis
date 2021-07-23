@@ -6,6 +6,8 @@
 	request.setCharacterEncoding("UTF-8");
 %>      
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<c:set var="article" value="${articleMap.article}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,32 +79,35 @@
 			
 			<tr>
 				<td width="200"><p align="center">문의번호</td>
-				<td width="300"><input type="text" name="qa_No" value="${vo.qa_No}" disabled/></td>
+				<td width="300">
+					<input type="text" name="qa_No" value="${article.qa_No}" disabled/>
+					<input type="hidden" name="qa_No" value="${article.qa_No }" />
+				</td>
 			</tr>
 				
 			<tr>
 				<td width="200"><p align="center">제목</td>
-				<td width="300"><input type="text" id="qa_title_mod" name="qa_title" value="${vo.qa_title}" disabled /> </td>
+				<td width="300"><input type="text" id="qa_title_mod" name="qa_title" value="${article.qa_title}" disabled /> </td>
 			</tr>
 			
 			<tr>
 				<td width="200"><p align="center">문의종류</td>
-				<td width="300"><input type="text" id="qa_category_mod" name="qa_category" value="${vo.qa_category}" disabled  /> </td>
+				<td width="300"><input type="text" id="qa_category_mod" name="qa_category" value="${article.qa_category}" disabled  /> </td>
 			</tr>
 			
 			<tr>
 				<td width="200"><p align="center">내용</td>
-				<td width="300"><textarea rows="4" id="qa_content_mod" cols="40" name="qa_content" disabled>${vo.qa_content}</textarea> </td>
+				<td width="300"><textarea rows="4" id="qa_content_mod" cols="40" name="qa_content" disabled>${article.qa_content}</textarea> </td>
 			</tr>
 			
 			<tr>
 				<td width="200"><p align="center">등록일</td>
-				<td width="300"><input type="text" name="qa_date" value="${vo.qa_date}" disabled/> </td>
+				<td width="300"><input type="text" name="qa_date" value="${article.qa_date}" disabled/> </td>
 			</tr>
 			
 			<tr>
 				<td width="200"><p align="center">등록자</td>
-				<td width="300"><input type="text" name="user_id" value="${vo.user_id}" disabled/> </td>
+				<td width="300"><input type="text" name="user_id" value="${article.user_id}" disabled/> </td>
 			</tr>
 			
 			<tr id="tr_btn">

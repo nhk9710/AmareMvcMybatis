@@ -49,7 +49,15 @@
   
   <select id="selectTotBoards" resultType="int">
 		select count(qa_No) from q_board
-	</select>
+  </select>
+	
+	<select id="selectArticle" resultType="boardVO" parameterType="int">
+		<![CDATA[
+			SELECT * FROM q_board
+			WHERE qa_No = #{qa_No}
+		]]>
+	</select>	
+	
   
   <insert id="insertBoard" parameterType="boardVO">
   	<![CDATA[
