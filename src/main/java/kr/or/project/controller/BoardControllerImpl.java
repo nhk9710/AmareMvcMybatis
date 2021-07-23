@@ -179,11 +179,13 @@ public class BoardControllerImpl extends MultiActionController implements BoardC
 		request.setCharacterEncoding("utf-8");
 		
 		String viewName = (String)request.getAttribute("viewName");
-		System.out.println("===============qa_No: " + qa_No);
+		//System.out.println("===============qa_No: " + qa_No);
+		Map articleMap = boardService.viewBoard(qa_No);
+				
 		ModelAndView mav = new ModelAndView();
 		
 		mav.setViewName(viewName);
-		mav.addObject("vo", boardService.viewBoard(qa_No));
+		mav.addObject("articleMap", articleMap);
 		
 		return mav;
 	}

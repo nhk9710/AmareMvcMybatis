@@ -20,4 +20,6 @@ public interface BoardDAO {
 
 	public int selectTotBoards() throws DataAccessException;
 
+	public BoardVO selectArticle(int qa_No) throws DataAccessException;
+
 }
