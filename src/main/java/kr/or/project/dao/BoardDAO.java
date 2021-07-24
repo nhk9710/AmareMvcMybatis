@@ -16,7 +16,7 @@ public interface BoardDAO {
 
 	public BoardVO viewBoard(int qa_No) throws DataAccessException;
 
-	public void updateBoard(Map updateMap) throws DataAccessException ;
+	public void updateBoard(Map articleMap) throws DataAccessException ;
 
 	public int selectTotBoards() throws DataAccessException;
 
