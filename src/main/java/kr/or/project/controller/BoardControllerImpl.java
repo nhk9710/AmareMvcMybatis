@@ -1,6 +1,7 @@
 package kr.or.project.controller;
 
 import java.io.File;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +17,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
@@ -219,7 +225,63 @@ public class BoardControllerImpl extends MultiActionController implements BoardC
 	  	return mav;
 	  }
 
-	
+	  
+	  //수정 기능
+	  @RequestMapping(value = "/board/modArticle.do", method = RequestMethod.POST)
+	  @ResponseBody
+	  public ResponseEntity modArticle(HttpServletRequest request , HttpServletResponse response) throws Exception {
+		  request.setCharacterEncoding("utf-8");
+		  
+		  Map<String, Object> articleMap = new HashMap<>();
+		  
+		  Enumeration enu= request.getParameterNames();       	// key : value 형태로 존재함
+		  while (enu.hasMoreElements()) {						// 여기로 진입을 안함 ==> 당연히 put도 실행이 안됨.
+			  String name = (String) enu.nextElement();
+			  String value = request.getParameter(name);
+			  articleMap.put(name, value);						// 여기에서 articleMap에 put(저장)함.
+		  }
+		  
+		  
+		  //alert창 메시지 구현
+		  HttpHeaders responseHeaders = new HttpHeaders();
+		  responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		  String message;
+		  ResponseEntity responseEntity = null;
+		  String qa_No = (String) articleMap.get("qa_No");
+		  
+		  try {
+			  boardService.modArticle(articleMap);			//디비 수정
+			  
+			  message = "<script>";
+			  message += " alert('글을 수정했습니다.');";			  
+			  //message += " location.href='        "+request.getContextPath()+"     /board/viewBoard.do?qa_No=qa_No                    ';    ";
+			  //message += " location.href='        "+request.getContextPath()+"     /board/viewBoard.do?qa_No="
+			  //		+ qa_No +   "';";
+			  message += " location.href='"+request.getContextPath()+"/board/viewBoard.do?qa_No="
+				  		+ qa_No +   "';";			  
+			  message += " </script>";
+			  
+			  responseEntity = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+			  
+		  } catch (Exception e) {
+			 
+			  message = "<script>";
+			  message += " alert('오류가 발생했습니다. 다시 수정해주세요.');";			  
+			  //message += " location.href='        "+request.getContextPath()+"     /board/viewBoard.do?qa_No=qa_No                    ';    ";
+			  //message += " location.href='        "+request.getContextPath()+"     /board/viewBoard.do?qa_No="
+			  //		  + qa_No +   "';";
+			  message += " location.href='"+request.getContextPath()+"/board/viewBoard.do?qa_No="
+					  + qa_No +   "';";
+			  
+			  message += " </script>";			  
+			  
+			  responseEntity = new ResponseEntity(message, responseHeaders, HttpStatus.CREATED);
+		  }  
+		  
+		  return responseEntity;
+	  }
+	  
+	  
 
 	@Override
 	public ModelAndView addBoard(HttpServletRequest request, HttpServletResponse response) throws Exception {

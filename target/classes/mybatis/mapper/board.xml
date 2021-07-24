@@ -88,10 +88,9 @@
   
   <update id="updateBoard" parameterType="java.util.Map" >
   	<![CDATA[
-  		update q_board set
-  			qa_title = #{qa_title},
-  			qa_category = #{qa_category},
-  			qa_content = #{qa_content}
+  		update q_board 
+  		set qa_title = #{qa_title}
+  		   ,qa_content = #{qa_content}
   		where qa_No = #{qa_No}
   	]]>
   </update>

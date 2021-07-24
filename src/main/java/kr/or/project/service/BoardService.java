@@ -19,4 +19,6 @@ public interface BoardService {
 	public Map updateBoard(Map updateMap) throws Exception;
 
 	public Object updateForm(int qa_No);
+
+	public void modArticle(Map<String, Object> articleMap) throws Exception;
 }

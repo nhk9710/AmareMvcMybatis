@@ -55,8 +55,9 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 	@Override
-	public void updateBoard(Map updateMap) throws DataAccessException {
-		 sqlSession.update("mapper.board.updateBoard", updateMap);
+	public void updateBoard(Map articleMap) throws DataAccessException {
+		System.out.println("====================================updateBoard================================================");
+		 sqlSession.update("mapper.board.updateBoard", articleMap);
 		
 	}
 

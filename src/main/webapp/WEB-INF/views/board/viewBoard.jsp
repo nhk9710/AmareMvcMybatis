@@ -5,8 +5,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>      
-<c:set var="contextPath" value="${pageContext.request.contextPath }" />
-<c:set var="article" value="${articleMap.article}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<c:set var="article" value="${articleMap.article}" />							<!-- article은 articleVO를 뜻함-->
 
 <!DOCTYPE html>
 <html>
@@ -16,9 +16,14 @@
 	<link href="${pageContext.request.contextPath}/resources/css/kfonts2.css" rel="stylesheet" >
 <title>상세조회 페이지</title>
 <style type="text/css">
-		#tr_btn_mod {
+		#tr_btn_modify {
 			display: none;
 		}
+		
+		.tr_modEnable {
+			visibility: hidden;
+		}
+		
 		table{
 		    width: 70%;
 		    border-collapse: collapse;
@@ -41,9 +46,12 @@
 <script type="text/javascript">
 		
 	
-	function fn_enable(obj) {
-		obj.action = "${contextPath}/board/updateForm.do"
-		obj.submit();
+	function fn_enable() {
+		document.getElementById("qa_title_mod").disabled=false;
+		document.getElementById("qa_content_mod").disabled=false;
+		document.getElementById("tr_btn_modify").style.display="block";
+		document.getElementById("tr_btn").style.display="none";
+		$(".tr_modEnable").css("visibility", "visible");
 	}
 	
 	function backToList(obj) {
@@ -70,10 +78,15 @@
 		document.body.appendChild(form);
 		form.submit();
 	}
+	
+	function fn_modify_article(obj) {
+		obj.action="${contextPath}/board/modArticle.do";
+		obj.submit();
+	}
 </script>
 </head>
 <body>
-<form action="${contextPath}" name="frmBoard" method="post" enctype="multipart/form-data">
+<form name="frmBoard" method="post" >
 	<h1 align="center">게시판 상세정보 출력</h1>
 	<table border="1" align="center" width="80%" >
 			
@@ -110,9 +123,16 @@
 				<td width="300"><input type="text" name="user_id" value="${article.user_id}" disabled/> </td>
 			</tr>
 			
+			<tr id="tr_btn_modify" align="right">
+				<td colspan="2">
+					<input type="button" value="수정반영하기" onclick="fn_modify_article(frmBoard)" />
+					<input type="button" value="취소" onclick="backToList(frmBoard)" />
+				</td>
+			</tr>
+			
 			<tr id="tr_btn">
 				<td colspan="2" align="center">
-					<input type="button" value="수정하기" onclick="fn_enable(this.form)" />
+					<input type="button" value="수정하기" onclick="fn_enable()" />
 					<input type="button" value="삭제하기" onclick="removeList(this.form)">
 					<input type="button" value="게시글목록" onclick="backToList(this.form)">
 					<input type="button" value="답급달기" onclick="fn_reply_form('${contextPath}/board/replyForm.do', ${board.qa_No})" />   <!-- 요청명과 글번호를 전달함  -->

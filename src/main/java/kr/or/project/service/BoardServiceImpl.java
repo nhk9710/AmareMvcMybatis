@@ -85,6 +85,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 
+	@Override
+	public void modArticle(Map<String, Object> articleMap) throws Exception {
+		boardDAO.updateBoard(articleMap);
+				
+	}
+
+
 
 
 
